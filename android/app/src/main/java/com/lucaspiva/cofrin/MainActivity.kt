@@ -1,4 +1,4 @@
-package com.cofrin
+package com.lucaspiva.cofrin
 
 import android.os.Build
 import android.os.Bundle

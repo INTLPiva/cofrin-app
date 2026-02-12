@@ -1,4 +1,4 @@
-package com.cofrin
+package com.lucaspiva.cofrin
 
 import android.app.Application
 import android.content.res.Configuration
