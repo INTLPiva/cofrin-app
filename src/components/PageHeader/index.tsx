@@ -4,14 +4,14 @@ import { styles } from "./styles";
 import { router } from "expo-router";
 import { colors } from "@/theme";
 
-type Props = {
+interface Props {
   title: string;
   subtitle?: string;
   rightButton?: {
     onPress: () => void;
     icon: keyof typeof MaterialIcons.glyphMap;
   };
-};
+}
 
 export function PageHeader({ title, subtitle, rightButton }: Props) {
   return (
