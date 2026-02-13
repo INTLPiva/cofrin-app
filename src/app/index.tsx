@@ -20,7 +20,7 @@ export default function Index() {
 
   async function fetchTargets(): Promise<TargetProps[]> {
     try {
-      const response = await targetDatabase.listBySavedValue();
+      const response = await targetDatabase.listByClosestTarget();
       return response.map((item) => ({
         id: String(item.id),
         name: item.name,
