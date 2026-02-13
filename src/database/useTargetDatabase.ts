@@ -5,7 +5,11 @@ export interface TargetCreate {
   amount: number;
 }
 
-export type TargetResponse = {
+export interface TargetUpdate extends TargetCreate {
+  id: number;
+}
+
+export interface TargetResponse {
   id: number;
   name: string;
   amount: number;
@@ -13,7 +17,7 @@ export type TargetResponse = {
   percentage: number;
   created_at: Date;
   updated_at: Date;
-};
+}
 
 export function useTargetDatabase() {
   const database = useSQLiteContext();
@@ -62,5 +66,21 @@ export function useTargetDatabase() {
     `);
   }
 
-  return { create, listBySavedValue, getById };
+  async function update(data: TargetUpdate) {
+    const statement = await database.prepareAsync(`
+        UPDATE targets SET
+          name = $name,
+          amount = $amount,
+          updated_at = current_timestamp
+        WHERE id = $id
+      `);
+
+    statement.executeAsync({
+      $id: data.id,
+      $name: data.name,
+      $amount: data.amount,
+    });
+  }
+
+  return { create, listBySavedValue, getById, update };
 }
